@@ -2,42 +2,20 @@ import React from "react"
 import Die from "./die"
 
 export default function App(){
-  
+  const [dice, setDice]=React.useState(allNewDice())
+  function allNewDice() {
+    const newDice = []
+    for (let i = 0; i < 10; i++) {
+        newDice.push(Math.ceil(Math.random() * 6))
+    }
+    return newDice
+}
+  const diceElements=dice.map(die=> <Die num={die}/>)
   return (
    <main>
         <div className="dice-container">
-
-       
-         <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
-        <Die
-        num= {1}
-        />
+        {diceElements}
+    
         </div>
     
             </main>)
