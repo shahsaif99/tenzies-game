@@ -1,9 +1,22 @@
 import React from "react"
-import Die from "./die"
+import Die from "./components/die"
 import {nanoid} from "nanoid"
 
 export default function App(){
   const [dice, setDice]=React.useState(allNewDice())
+  const [tenzies, setTenzies]=React.useState(false)
+
+  React.useEffect(()=>{
+    const allHeld=dice.every(die => die.isHeld)
+    const firstValue=dice[0].num
+    const allSameValue= dice.every(die => die.num===firstValue)
+    if(allHeld && allSameValue){
+      setTenzies(true)
+      alert("You Won!")
+    }
+  })
+
+
   function generateNewDie(){
     return{
       num: Math.ceil(Math.random() * 6),
